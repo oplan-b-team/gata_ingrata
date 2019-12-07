@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>main</title>
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+
+  <body>
+
+
+
+    <!--画面左上タイトル-->
+    <div class="title">
+      <h1>Gata ingrata</h1>
+    </div>
+
+
+
+    <!--画面右上 編集画面のリンク-->
+    <div class="link_edit">
+      <a href="  ">
+      <img src="/26565.jpg">
+      </a>
+    </div>
+
+
+
+    <!--タイトル下 ログアウトボタン -->
+    <div class="logout">
+      <a href="  ">ログアウト</a>
+    </div>
+
+
+
+    <%= form_for(@task, url: '/main/create',method: :post, :html => {:class => "work_content"},prompt: "選択してください") do |f| %>
+
+    <!--画面中央ちょい上 作業内容表示欄(セレクトボックス)-->
+      <%= f.select(:work_id, Work.pluck(:job, :id)) %>
+
+
+
+    <!--作業内容下 開始ボタン-->
+      <%= f.submit value = "開始", :class=>"start_button"%>
+
+    <%end%>
+
+
+
+    <!--作業内容下 終了ボタン-->
+    <%= form_tag('/main/finish') do %>
+      <div class="finish_button">
+        <input type="submit" name="finish" value="終了">
+      </div>
+    <%end%>
+
+
+  <!--開始~終了の中間下 確認画面のリンク-->
+  <div class="link_check">
+    <a href="  ">確認画面</a>
+  </div>
+
+  <!--画面右下 日付-->
+  <div class="date">
+    <p>
+    <%= @date %>
+    </p>
+  </div>
+  </body>
+</html>
